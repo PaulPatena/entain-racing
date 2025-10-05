@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { render, fireEvent, screen } from '@testing-library/vue'
-import BrandThemeSwitcher from './BrandThemeSwitcher.vue'
+import BrandThemeSwitcher from '../BrandThemeSwitcher.vue'
 
 describe('BrandThemeSwitcher', () => {
   beforeEach(() => {

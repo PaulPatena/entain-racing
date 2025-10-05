@@ -1,7 +1,7 @@
 // src/components/__tests__/FooterBar.spec.ts
 import { describe, it, expect } from 'vitest'
 import { render, screen, within } from '@testing-library/vue'
-import FooterBar from './FooterBar.vue'
+import FooterBar from '../FooterBar.vue'
 
 describe('FooterBar', () => {
   it('renders copyright and external link', () => {

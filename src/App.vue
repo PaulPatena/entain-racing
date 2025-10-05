@@ -19,7 +19,7 @@ onBeforeUnmount(() => { races.stopPoller(); races.stopTicker() })
       <div class="mx-auto max-w-3xl p-6 space-y-6">
         <header class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <h1 class="text-2xl font-semibold">
-            Next-to-Go <span class="text-primary">Races</span>
+            Entain <span class="text-primary">Races</span>
           </h1>
           <BrandThemeSwitcher />
         </header>

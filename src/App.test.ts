@@ -21,7 +21,7 @@ describe('App.vue', () => {
 
     // Header exists
     expect(
-      screen.getByRole('heading', { name: /Next-to-Go .*Races/i })
+      screen.getByRole('heading', { name: /Entain .*Races/i })
     ).toBeInTheDocument()
 
     // Footer exists (contentinfo)

@@ -24,7 +24,7 @@ const mmss = computed(() => {
   const totalSec = Math.floor(ms / 1000)
   const m = Math.floor(totalSec / 60)
   const s = totalSec % 60
-  return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`
+  return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
 })
 
 /** For started races: time until it disappears (counts down from 60s) */
@@ -62,11 +62,10 @@ const removalRemainSec = computed(() => Math.ceil(removalRemainMs.value / 1000))
         <template v-else-if="status === 'started'">
           <div class="text-xs opacity-70">Started</div>
           <div
-              class="text-lg font-semibold tabular-nums"
-              :class="removalRemainSec <= 10 ? 'text-danger' : 'text-primary'"
+              class="text-lg font-semibold tabular-nums text-primary"
               aria-live="polite"
           >
-            Removing in {{ String(removalRemainSec).padStart(2,'0') }}s
+            Removing in {{ String(removalRemainSec).padStart(2, '0') }}s
           </div>
         </template>
       </div>

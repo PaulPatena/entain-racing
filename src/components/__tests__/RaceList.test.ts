@@ -1,9 +1,9 @@
 import {describe, expect, it} from 'vitest'
 import {render, screen} from '@testing-library/vue'
 import {createTestingPinia} from '@pinia/testing'
-import RaceList from './RaceList.vue'
-import {useRaceStore} from '@/stores/races'
-import type {CategoryID, Race} from '@/types/racing'
+import RaceList from '../RaceList.vue'
+import {useRaceStore} from '../../stores/races'
+import type {CategoryID, Race} from '../../types/racing'
 import {nextTick} from 'vue'
 
 const HORSE: CategoryID = '4a2788f8-e825-4d36-9894-efd4baf1cfae'

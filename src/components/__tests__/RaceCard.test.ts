@@ -2,9 +2,9 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/vue'
 import { createTestingPinia } from '@pinia/testing'
-import RaceCard from '@/components/RaceCard.vue'
-import { useRaceStore } from '@/stores/races'
-import type { Race } from '@/types/racing'
+import RaceCard from '../RaceCard.vue'
+import { useRaceStore } from '../../stores/races'
+import type { Race } from '../../types/racing'
 
 const HORSE = '4a2788f8-e825-4d36-9894-efd4baf1cfae'
 

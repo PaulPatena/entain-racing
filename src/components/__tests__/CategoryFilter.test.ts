@@ -2,8 +2,8 @@
 import { describe, it, expect } from 'vitest'
 import { render, fireEvent, screen } from '@testing-library/vue'
 import { createTestingPinia } from '@pinia/testing'
-import CategoryFilter from '@/components/CategoryFilter.vue'
-import { useRaceStore } from '@/stores/races'
+import CategoryFilter from '../CategoryFilter.vue'
+import { useRaceStore } from '../../stores/races'
 
 describe('CategoryFilter (radio)', () => {
   it('selects one category and updates store', async () => {
