@@ -13,8 +13,11 @@ type ApiResponse = { data: { race_summaries: Record<string, ApiRaceSummary> } }
 
 const API_BASE = import.meta.env.VITE_API_BASE
 
-const NEXT_RACES_URL = (count: number) =>
-  `${API_BASE}&count=${count}`
+const NEXT_RACES_URL = (count: number) => {
+  // Direct URL uses '&', proxy netlify function needs '?'
+  const join = API_BASE.includes('?') ? '&' : '?'
+  return `${API_BASE}${join}count=${count}`
+}
 
 const STALE_AFTER_MS = 60_000
 
