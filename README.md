@@ -40,14 +40,22 @@ npm run dev
 # generate prod build
 npm run build
 
-# test locally the prod build 
-npm run preview
+# runs Vite prod built + netlify functions together
+npx netlify dev
 ```
 
 Then open <http://localhost:5173> in your browser.
 
 The app calls the public API: (No authentication required.)
 <https://api.neds.com.au/rest/v1/racing/?method=nextraces&count=10>
+
+# ☁️ API Proxy
+
+Because the public Neds Racing API doesn’t send CORS headers, browser requests from Netlify would fail by default.
+To fix that, I created a small Netlify serverless function that proxies requests to the Neds endpoint and adds permissive CORS headers.
+
+In development, the app calls the Neds API directly.
+In production, it automatically switches to use the Netlify proxy (/api/nextraces), which keeps everything working without browser extensions or manual CORS tweaks.
 
 # 🧪 Tests and coverage
 ```

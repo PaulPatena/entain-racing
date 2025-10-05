@@ -2,7 +2,7 @@
 import type { Handler } from '@netlify/functions'
 
 const CORS = (origin?: string) => ({
-  'access-control-allow-origin': origin ?? 'entain-racing.netlify.app',
+  'access-control-allow-origin': origin ?? 'paul-entain.netlify.app',
   'access-control-allow-methods': 'GET, OPTIONS',
   'access-control-allow-headers': 'Content-Type',
 })
