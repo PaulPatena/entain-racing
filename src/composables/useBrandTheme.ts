@@ -24,26 +24,47 @@ export function useBrandTheme() {
 
   const init = () => {
     const savedBrand = (localStorage.getItem(BRAND_KEY) as Brand) || 'blue'
+
+    // gate matchMedia; default to light when unavailable
+    const hasMQ =
+      typeof window !== 'undefined' &&
+      typeof window.matchMedia === 'function'
+
+    const prefersDark = hasMQ
+      ? window.matchMedia('(prefers-color-scheme: dark)').matches
+      : false
+
     const savedTheme =
       (localStorage.getItem(THEME_KEY) as Theme) ||
-      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+      (prefersDark ? 'dark' : 'light')
 
     applyBrand(savedBrand)
     applyTheme(savedTheme)
   }
 
-  // Track OS changes only if user hasn't chosen explicitly
-  const mql = window.matchMedia('(prefers-color-scheme: dark)')
+  let mql: MediaQueryList | null = null
   const handleMql = (e: MediaQueryListEvent) => {
-    if (!localStorage.getItem(THEME_KEY)) applyTheme(e.matches ? 'dark' : 'light')
+    if (!localStorage.getItem(THEME_KEY)) {
+      applyTheme(e.matches ? 'dark' : 'light')
+    }
   }
 
   onMounted(() => {
     init()
-    mql.addEventListener('change', handleMql)
+
+    if (typeof window !== 'undefined' && typeof window.matchMedia === 'function') {
+      mql = window.matchMedia('(prefers-color-scheme: dark)')
+      mql.addEventListener?.('change', handleMql)
+      // (Optional) sync immediately in case theme changed before mount
+      if (!localStorage.getItem(THEME_KEY)) {
+        applyTheme(mql.matches ? 'dark' : 'light')
+      }
+    }
   })
+
   onBeforeUnmount(() => {
-    mql.removeEventListener('change', handleMql)
+    mql?.removeEventListener?.('change', handleMql)
+    mql = null
   })
 
   return { activeBrand, activeTheme, applyBrand, applyTheme }

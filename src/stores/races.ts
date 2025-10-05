@@ -9,9 +9,7 @@ type ApiRaceSummary = {
   category_id: CategoryID
 }
 
-type ApiResponse = {
-  data: { race_summaries: Record<string, ApiRaceSummary> }
-}
+type ApiResponse = { data: { race_summaries: Record<string, ApiRaceSummary> } }
 
 const NEXT_RACES_URL = (count: number) =>
   `https://api.neds.com.au/rest/v1/racing/?method=nextraces&count=${count}`
@@ -22,35 +20,27 @@ export const useRaceStore = defineStore('races', {
   state: () => ({
     byId: {} as Record<string, Race>,
     nowMs: Date.now(),
-    selected: new Set<CategoryID>() as Set<CategoryID>,
+    selected: null as CategoryID | null, // null = All
     loading: false,
     error: '' as string,
     _ticker: null as number | null,
     _poller: null as number | null,
   }),
   getters: {
-    allRaces(state): Race[] {
-      return Object.values(state.byId)
-    },
     visible(state): Race[] {
       const list = Object.values(state.byId)
-        .filter(r => state.nowMs - r.startMs <= STALE_AFTER_MS) // not beyond +60s
-        .filter(r => state.selected.size === 0 || state.selected.has(r.categoryId))
+        .filter(r => state.nowMs - r.startMs <= STALE_AFTER_MS)
+        .filter(r => state.selected === null || r.categoryId === state.selected)
         .sort((a, b) => a.startMs - b.startMs)
       return list.slice(0, 5)
     },
   },
   actions: {
-    toggleCategory(cat: CategoryID) {
-      if (this.selected.has(cat)) this.selected.delete(cat)
-      else this.selected.add(cat)
-    },
-    clearCategories() {
-      this.selected.clear()
+    setCategory(cat: CategoryID | null) {
+      this.selected = cat
     },
     merge(races: Race[]) {
       for (const r of races) this.byId[r.id] = r
-      // Bound memory: keep only upcoming-ish
       const cutoff = this.nowMs - STALE_AFTER_MS
       for (const [id, r] of Object.entries(this.byId)) {
         if (r.startMs < cutoff) delete this.byId[id]
@@ -78,9 +68,7 @@ export const useRaceStore = defineStore('races', {
     },
     startTicker() {
       if (this._ticker != null) return
-      this._ticker = window.setInterval(() => {
-        this.nowMs = Date.now()
-      }, 1000)
+      this._ticker = window.setInterval(() => (this.nowMs = Date.now()), 1000)
     },
     stopTicker() {
       if (this._ticker != null) {
@@ -90,11 +78,8 @@ export const useRaceStore = defineStore('races', {
     },
     startPoller(intervalMs = 15000) {
       if (this._poller != null) return
-      // initial fetch eager
       this.fetchNext(50)
-      this._poller = window.setInterval(() => {
-        this.fetchNext(50)
-      }, intervalMs)
+      this._poller = window.setInterval(() => this.fetchNext(50), intervalMs)
     },
     stopPoller() {
       if (this._poller != null) {

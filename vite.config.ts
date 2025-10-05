@@ -12,10 +12,26 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
-    setupFiles: './tests/setup.ts',
+    setupFiles: 'src/test/setup.ts',
+    include: [
+      'src/**/*.test.ts',
+      'src/**/*.test.tsx',
+      'src/**/*.spec.ts',
+      'src/**/*.spec.tsx',
+      'src/**/*.spec.vue',
+    ],
+    restoreMocks: true,
     coverage: {
       reporter: ['text', 'html', 'lcov'],
       reportsDirectory: './coverage',
+      exclude: [
+        'postcss.config.js',
+        'tailwind.config.js',
+        'src/main.ts',
+        'vite.config.ts',
+        '**/src/test/**',
+        '**/*.d.ts',
+      ],
     },
   },
 })
