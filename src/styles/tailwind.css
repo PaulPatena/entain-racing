@@ -24,6 +24,9 @@ body {
     color: rgb(var(--color-text));
 }
 
+button {
+    cursor: pointer;
+}
 /* Safety-net semantic utilities */
 @layer utilities {
     .bg-primary     { background-color: rgb(var(--color-primary)); }

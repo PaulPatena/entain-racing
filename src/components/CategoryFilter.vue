@@ -2,63 +2,48 @@
 import { computed } from 'vue'
 import { useRaceStore } from '@/stores/races'
 import { CATEGORY_LABELS, type CategoryID } from '@/types/racing'
+import {ACTIVE_BUTTON_STYLE, DEFAULT_BUTTON_STYLE} from "@/components/constants";
 
 const store = useRaceStore()
 const categories = computed(() => Object.keys(CATEGORY_LABELS) as CategoryID[])
 
-function onChange(e: Event) {
-  const value = (e.target as HTMLInputElement).value
-  store.setCategory(value === 'ALL' ? null : (value as CategoryID))
+function selectCategory(id: CategoryID | null) {
+  store.setCategory(id)
 }
 </script>
 
 <template>
-  <fieldset class="flex flex-wrap items-center gap-2" role="radiogroup" aria-label="Race category">
-    <!-- All -->
-    <label
-        class="px-3 py-1 text-sm border rounded-brand transition-colors duration-200 cursor-pointer"
-        :class="store.selected === null
-        ? 'bg-primary text-white border-primary shadow-brand scale-[1.02]'
-        : 'border-primary-soft hover:bg-primary/10'"
-    >
-      <input
-          type="radio"
-          name="race-category"
-          value="ALL"
-          class="sr-only"
-          :checked="store.selected === null"
-          @change="onChange"
-      />
-      All
-    </label>
+  <div class="space-y-2">
+    <h2 class="text-sm opacity-80">Filter</h2>
 
-    <!-- Individual categories -->
-    <label
-        v-for="id in categories"
-        :key="id"
-        class="px-3 py-1 text-sm border rounded-brand transition-colors duration-200 cursor-pointer"
-        :class="store.selected === id
-        ? 'bg-primary text-white border-primary shadow-brand scale-[1.02]'
-        : 'border-primary-soft hover:bg-primary/10'"
-    >
-      <input
-          type="radio"
-          name="race-category"
-          :value="id"
-          class="sr-only"
-          :checked="store.selected === id"
-          @change="onChange"
-      />
-      {{ CATEGORY_LABELS[id] }}
-    </label>
-  </fieldset>
+    <div class="flex flex-wrap gap-2" role="group" aria-label="Race category">
+      <!-- “All” -->
+      <button
+          type="button"
+          :class="[
+              DEFAULT_BUTTON_STYLE,
+              store.selected === null && ACTIVE_BUTTON_STYLE
+          ]"
+          :aria-pressed="store.selected === null"
+          @click="selectCategory(null)"
+      >
+        All
+      </button>
+
+      <!-- Individual categories -->
+      <button
+          v-for="id in categories"
+          :key="id"
+          type="button"
+          :class="[
+              DEFAULT_BUTTON_STYLE,
+              store.selected === id && ACTIVE_BUTTON_STYLE
+          ]"
+          :aria-pressed="store.selected === id"
+          @click="selectCategory(id)"
+      >
+        {{ CATEGORY_LABELS[id] }}
+      </button>
+    </div>
+  </div>
 </template>
-
-<style scoped>
-/* hide-only-visually utility */
-.sr-only {
-  position: absolute;
-  width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
-}
-</style>

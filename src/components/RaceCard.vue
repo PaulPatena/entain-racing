@@ -10,6 +10,7 @@ const store = useRaceStore()
 
 const REMOVAL_WINDOW_MS = 60_000
 
+// remainingMs is the remaining time before the race starts
 const remainingMs = computed(() => props.race.startMs - store.nowMs)
 const startedAgoMs = computed(() => Math.max(0, store.nowMs - props.race.startMs))
 

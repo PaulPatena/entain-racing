@@ -57,6 +57,7 @@ export const useRaceStore = defineStore('races', {
         this.error = ''
         const res = await fetch(NEXT_RACES_URL(count))
         const json = (await res.json()) as ApiResponse
+        // Mapping api response to shape stored in frontend
         const races = Object.values(json.data.race_summaries).map<Race>(s => ({
           id: s.race_id,
           meetingName: s.meeting_name,

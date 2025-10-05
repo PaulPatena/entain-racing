@@ -12,6 +12,7 @@ const { visible, loading, error } = storeToRefs(store)
     <div v-if="error" class="text-sm text-white bg-danger rounded-brand px-2 py-1">Error: {{ error }}</div>
 
     <template v-if="loading && visible.length === 0">
+      <!--skeleton whilst loading-->
       <div v-for="i in 5" :key="i" class="h-[68px] rounded-brand bg-muted animate-pulse"></div>
     </template>
 

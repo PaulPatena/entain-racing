@@ -1,0 +1,2 @@
+export const DEFAULT_BUTTON_STYLE = 'px-3 py-1 text-sm transition-all duration-200 border rounded-brand border-primary-soft'
+export const ACTIVE_BUTTON_STYLE = 'bg-primary text-white border-primary shadow-brand scale-[1.02]'

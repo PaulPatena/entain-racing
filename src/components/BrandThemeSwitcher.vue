@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useBrandTheme, type Brand, type Theme } from '@/composables/useBrandTheme'
+import {ACTIVE_BUTTON_STYLE, DEFAULT_BUTTON_STYLE} from "@/components/constants";
 
 const { activeBrand, activeTheme, applyBrand, applyTheme } = useBrandTheme()
 </script>
@@ -13,12 +14,9 @@ const { activeBrand, activeTheme, applyBrand, applyTheme } = useBrandTheme()
             v-for="b in ['blue','red','purple']"
             :key="b"
             @click="applyBrand(b as Brand)"
-            class="px-3 py-1 text-sm transition-all duration-200 border rounded-brand"
             :class="[
-            'border-primary-soft',
-            activeBrand === b
-              ? 'bg-primary text-white border-primary shadow-brand scale-[1.02]'
-              : 'bg-transparent hover:bg-primary/10'
+            DEFAULT_BUTTON_STYLE,
+            activeBrand === b && ACTIVE_BUTTON_STYLE
           ]"
         >
           {{ b }}
@@ -33,12 +31,9 @@ const { activeBrand, activeTheme, applyBrand, applyTheme } = useBrandTheme()
             v-for="t in ['light','dark']"
             :key="t"
             @click="applyTheme(t as Theme)"
-            class="px-3 py-1 text-sm transition-all duration-200 border rounded-brand"
             :class="[
-            'border-primary-soft',
-            activeTheme === t
-              ? 'bg-primary text-white border-primary shadow-brand scale-[1.02]'
-              : 'bg-transparent hover:bg-primary/10'
+            DEFAULT_BUTTON_STYLE,
+            activeTheme === t && ACTIVE_BUTTON_STYLE
           ]"
         >
           {{ t }}
