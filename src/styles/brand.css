@@ -1,0 +1,106 @@
+/* ================= BLUE ================= */
+/* Light */
+:root[data-brand="blue"][data-theme="light"],
+:root[data-brand="blue"]:not([data-theme]) {
+    --radius: 12px;
+    --font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+
+    --color-primary: 37 99 235;     /* blue-600 */
+    --color-secondary: 14 165 233;  /* sky-500 */
+    --color-accent: 99 102 241;     /* indigo-500 */
+    --color-surface: 245 247 255;   /* light bluish */
+    --color-muted: 226 232 240;     /* slate-200 */
+    --color-text: 15 23 42;         /* slate-900 */
+
+    --page-background: linear-gradient(180deg, rgba(239,246,255,1) 0%, rgba(219,234,254,1) 100%);
+}
+
+/* Dark */
+:root[data-brand="blue"][data-theme="dark"] {
+    --radius: 12px;
+    --font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+
+    --color-primary: 96 165 250;    /* blue-400 for contrast on dark */
+    --color-secondary: 56 189 248;  /* sky-400 */
+    --color-accent: 165 180 252;    /* indigo-300 */
+    --color-surface: 15 23 42;      /* slate-900 */
+    --color-muted: 30 41 59;        /* slate-800 */
+    --color-text: 226 232 240;      /* slate-200 */
+
+    --page-background: linear-gradient(180deg, rgba(15,23,42,1) 0%, rgba(30,41,59,1) 100%);
+}
+
+/* ================= RED (formerly green) ================= */
+/* Light */
+:root[data-brand="red"][data-theme="light"],
+:root[data-brand="red"]:not([data-theme]) {
+    --radius: 14px;
+    --font-family: "Geist Sans", Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+
+    --color-primary: 220 38 38;     /* red-600 */
+    --color-secondary: 244 63 94;   /* rose-500 */
+    --color-accent: 249 115 22;     /* orange-500 */
+    --color-surface: 255 245 245;   /* faint rose */
+    --color-muted: 254 226 226;     /* red-100 */
+    --color-text: 41 37 36;         /* stone-800 */
+
+    --page-background: linear-gradient(180deg, rgba(255,241,242,1) 0%, rgba(254,226,226,1) 100%);
+}
+
+/* Dark – improved contrast vs white text issue */
+:root[data-brand="red"][data-theme="dark"] {
+    --radius: 14px;
+    --font-family: "Geist Sans", Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+
+    /* Use brighter/lighter reds so white text pops, but keep surface dark */
+    --color-primary: 248 113 113;   /* red-400 */
+    --color-secondary: 251 113 133; /* rose-400 */
+    --color-accent: 253 186 116;    /* orange-300 */
+    --color-surface: 24 24 27;      /* zinc-900 */
+    --color-muted: 39 39 42;        /* zinc-800 */
+    --color-text: 244 244 245;      /* zinc-100 */
+
+    --page-background: linear-gradient(180deg, rgba(24,24,27,1) 0%, rgba(39,39,42,1) 100%);
+}
+
+/* ================= PURPLE ================= */
+/* Light */
+:root[data-brand="purple"][data-theme="light"],
+:root[data-brand="purple"]:not([data-theme]) {
+    --radius: 10px;
+    --font-family: "Sofia Sans", Inter, ui-sans-serif, system-ui, -apple-system,
+    Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+
+    --color-primary: 147 51 234;     /* purple-600 */
+    --color-secondary: 168 85 247;   /* purple-500 */
+    --color-accent: 192 132 252;     /* purple-400 */
+    --color-surface: 250 245 255;    /* purple-50 */
+    --color-muted: 237 233 254;      /* purple-100 */
+    --color-text: 46 16 101;         /* deep violet */
+
+    --page-background: linear-gradient(
+            180deg,
+            rgba(243,232,255,1) 0%,
+            rgba(221,214,254,1) 100%
+    );
+}
+
+/* Dark */
+:root[data-brand="purple"][data-theme="dark"] {
+    --radius: 10px;
+    --font-family: "Sofia Sans", Inter, ui-sans-serif, system-ui, -apple-system,
+    Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+
+    --color-primary: 216 180 254;    /* purple-300 */
+    --color-secondary: 196 181 253;  /* purple-200 */
+    --color-accent: 167 139 250;     /* indigo-300 */
+    --color-surface: 49 46 129;      /* indigo-900 */
+    --color-muted: 67 56 202;        /* indigo-700 */
+    --color-text: 250 245 255;       /* lavender white */
+
+    --page-background: linear-gradient(
+            180deg,
+            rgba(49,46,129,1) 0%,
+            rgba(67,56,202,1) 100%
+    );
+}
