@@ -11,8 +11,10 @@ type ApiRaceSummary = {
 
 type ApiResponse = { data: { race_summaries: Record<string, ApiRaceSummary> } }
 
+const API_BASE = import.meta.env.VITE_API_BASE
+
 const NEXT_RACES_URL = (count: number) =>
-  `https://api.neds.com.au/rest/v1/racing/?method=nextraces&count=${count}`
+  `${API_BASE}&count=${count}`
 
 const STALE_AFTER_MS = 60_000
 

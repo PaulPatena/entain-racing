@@ -1,0 +1,7 @@
+[functions]
+  node_bundler = "esbuild" # default, but explicit is fine
+
+[[redirects]]
+  from = "/api/nextraces"
+  to = "/.netlify/functions/neds-proxy"
+  status = 200
